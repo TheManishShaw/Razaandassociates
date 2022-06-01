@@ -1,372 +1,260 @@
+import React, { useState } from "react";
+import { useRouter } from 'next/router'
 
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon ,ChevronRightIcon,ChevronDownIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import Image from "next/image";
+import logo from '../public/assets/img/logo.png'
+const navigation = [
+  {id:1, name: "Contact us", href: "#" },
+  {id:2, name: "Feedback", href: "#" },
+];
+const allservices = [
+  { id: 1, name: "Pan Card", href: "/innerpage/Index" },
+  { id: 2, name: "DSC- Digital signature certificates", href: "#" },
+  { id: 3, name: "GST return filling", href: "#" },
+  { id: 4, name: "Income tax (ITR)", href: "#" },
+  { id: 5, name: "TDS Return Filling", href: "#" },
+  { id: 6, name: "TDS Refund", href: "#" },
+  { id: 7, name: "DEEDS", href: "#" },
+  { id: 8, name: "Providents Feedfunds Refund", href: "#" },
+];
+const technology = [
 
-const navigation = {
-  categories: [
-    {
-      id: 'All Services',
-      name: 'All Services',
- 
-      sections: [
-        {
-          id: 'Registration',
-          name: 'Registration',
-          items: [
-            { name: 'GST Registration', href: '#' },
-            { name: 'Professional Tax Registration', href: '#' },
-            { name: 'N.G.O Registration', href: '#' },
-            { name: 'Brand Registration', href: '#' },
-            { name: 'Private limited Registration', href: '#' },
-          
-          ],
-        },
-        {
-          id: 'Licences',
-          name: 'Licences',
-          items: [
-            { name: 'Food Licence', href: '#' },
-            { name: 'Trade Licence', href: '#' },
-            { name: 'Police Licence', href: '#' },
-            { name: 'Fire Licence', href: '#' },
-            { name: 'Pollution Certification', href: '#' },
-          ],
-        },
-        {
-          id: 'other Services',
-          name: 'Other Services',
-          items: [
-            { name: 'Pan Card', href: '#' },
-            { name: 'DSC-Digital signature Cartificates', href: '#' },
-            { name: 'GST Return Filling', href: '#' },
-            { name: 'Income tax (ITR)', href: '#' },
-            { name: 'TDS Return Filling', href: '#' },
-            { name: 'TDS Refund', href: '#' },
-            { name: 'DEEDS', href: '#' },
-            { name: 'Providents Fdeedsund Refund', href: '#' },
-            { name: 'Tan Card', href: '#' },
-            { name: 'Accounting', href: '#' },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'Join',
-      name: 'Join',
-     
-      sections: [
-        {
-          id: 'Career',
-          name: 'Career',
-          items: [
-            { name: 'Career Form', href: '#' },
-     
-          ],
-        },
-        {
-          id: 'Partners',
-          name: 'Partners',
-          items: [
-            { name: 'Partners Forms', href: '#' },
-         
-          ],
-        },
-        {
-          id: 'brands',
-          name: 'Brands',
-          items: [
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-          ],
-        },
-      ],
-    },
-    {
-        id: 'Contact',
-        name: 'Contact',
-       
-        sections: [
-          {
-            id: 'Reach-us',
-            name: 'Reach-us',
-            items: [
-              { name: 'Branches', href: '#' },
-       
-            ],
-          },
-          
-        ],
-      },
-      {
-        id: 'Feedbacck',
-        name: 'Feedback',
-       
-        sections: [
-          {
-            id: 'Feedbacks',
-            name: 'Feedbacks',
-            items: [
-              { name: 'Complains', href: '#' },
-              { name: 'Suggestions', href: '#' },
-       
-            ],
-          },
-          
-        ],
-      },
-  ],
-  pages: [
-   
- 
-  ],
-}
+];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
-export default function Example() {
-  const [open, setOpen] = useState(false)
 
+const NavBar = () => {
+  const router = useRouter();
+   const [tap, setTap] = useState(false);
+  const [nav, setNav] = useState(false);
+  const onTabHandler = () => setTap(!tap);
+  const [serviceTap, setserviceTap] = useState(false);
+  const onTabHandlertech = () => setserviceTap(!serviceTap);
+  const handleClick = () => setNav(!nav);
+  const navLink = ({ isActive }) =>{
+    return{
+      fontWeight: isActive ? 'bold' : ''
+    }
+  }
   return (
-    <div className="bg-white">
-      {/* Mobile menu */}
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+    <div className="w-screen h-[80px] z-20 bg-zinc-100 fixed drop-shadow-lg ">
+      <div className=" 2xl:px-36 xl:px-5 lg:pl-2 md:px-3 sm:px-2 xs:px-2 px-2  flex justify-between items-center w-full h-full">
+        <div className="flex items-center">
+          <h1 className="text-3xl font-bold mr-4 mt-1 sm:text-4xl font">
+            <Link href={"/"}>
+              <a className="cursor-pointer">
+                {" "}
+                <Image src={logo} alt="Logo" width={180} height={40} />
+              </a>
+            </Link>
+          </h1>
+        </div>
 
-          <Transition.Child
-            as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="-translate-x-full"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo="-translate-x-full"
-          >
-            <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
-              <div className="px-4 pt-5 pb-2 flex">
-                <button
-                  type="button"
-                  className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400"
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-
-              {/* Links */}
-              <Tab.Group as="div" className="mt-2">
-                <div className="border-b border-gray-200">
-                  <Tab.List className="-mb-px flex px-4 space-x-8">
-                    {navigation.categories.map((category) => (
-                      <Tab
-                        key={category.name}
-                        className={({ selected }) =>
-                          classNames(
-                            selected ? 'text-violet-900 border-violet-900' : 'text-gray-900 border-transparent',
-                            'flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium'
-                          )
-                        }
-                      >
-                        {category.name}
-                      </Tab>
-                    ))}
-                  </Tab.List>
-                </div>
-                <Tab.Panels as={Fragment}>
-                  {navigation.categories.map((category) => (
-                    <Tab.Panel key={category.name} className="pt-10 pb-8 px-4 space-y-10">
-                      
-                      {category.sections.map((section) => (
-                        <div key={section.name}>
-                          <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-gray-900">
-                            {section.name}
-                          </p>
-                          <ul
-                            role="list"
-                            aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
-                            className="mt-6 flex flex-col space-y-6"
-                          >
-                            {section.items.map((item) => (
-                              <li key={item.name} className="flow-root">
-                                <a href={item.href} className="-m-2 p-2 block text-gray-500">
-                                  {item.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </Tab.Panel>
-                  ))}
-                </Tab.Panels>
-              </Tab.Group>
-
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                {navigation.pages.map((page) => (
-                  <div key={page.name} className="flow-root">
-                    <a href={page.href} className="-m-2 p-2 block font-medium text-gray-900">
-                      {page.name}
-                    </a>
-                  </div>
-                ))}
-              </div>
-
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                <div className="flow-root">
-                  <a target="_blank" rel="noreferrer" href="http://manage.razaandassociates.com/"  className="-m-2 p-2 block font-medium text-gray-900">
-                    Sign in
-                  </a>
-                </div>
-             
-              </div>
-
-             
-            </div>
-          </Transition.Child>
-        </Dialog>
-      </Transition.Root>
-
-      <header className="relative bg-white">
-      
-
-        <nav aria-label="Top" className="w-full bg-slate-50 fixed mx-auto px-4 sm:px-6 lg:px-8 z-20">
-          <div className="border-b border-gray-200">
-            <div className="h-16 flex items-center">
-              <button
-                type="button"
-                className="bg-white p-2 rounded-md text-gray-400 lg:hidden"
-                onClick={() => setOpen(true)}
+        <ul className="hidden md:flex pr-28">
+          <div className="group inline-block relative">
+            <Link href="/services">
+              <a
+                className={`text-gray-700 px-4 rounded inline-flex items-center${
+                  router.pathname === "#"
+                    ? "text-black font-bold underline underline-offset-2"
+                    : "hover:bg-zinc-100 hover:text-black"
+                }`}
               >
-                <span className="sr-only">Open menu</span>
-                <MenuIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-
-              {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Logo</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="/assets/img/logo.png"
-                    alt="Logo"
-                  />
-                </a>
-              </div>
-
-              {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch lg:-pl-20 ">
-                <div className="h-full flex space-x-8">
-                  {navigation.categories.map((category) => (
-                    <Popover key={category.name} className="flex">
-                      {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? 'border-violet-900 text-violet-900'
-                                  : 'border-transparent text-gray-700 hover:text-gray-800',
-                                'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
-                              )}
-                            >
-                              {category.name}
-                            </Popover.Button>
-                          </div>
-
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <Popover.Panel className="absolute top-full inset-x-0 text-sm text-gray-500">
-                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
-
-                              <div className="relative bg-white">
-                                <div className="max-w-7xl mx-auto px-8">
-                                  <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
-                                
-                                    <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
-                                      {category.sections.map((section) => (
-                                        <div key={section.name}>
-                                          <p id={`${section.name}-heading`} className="font-medium text-gray-900">
-                                            {section.name}
-                                          </p>
-                                          <ul
-                                            role="list"
-                                            aria-labelledby={`${section.name}-heading`}
-                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                          >
-                                            {section.items.map((item) => (
-                                              <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
-                                                  {item.name}
-                                                </a>
-                                              </li>
-                                              
-                                            ))}
-                                          </ul>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Popover>
-                  ))}
-
-                  {navigation.pages.map((page) => (
+                All Services
+              </a>
+            </Link>
+            <ul className="absolute  hidden w-60 bg-white rounded-lg text-gray-700 pt-1 group-hover:block transition ease-in-out delay-300">
+              {allservices.map((item) => (
+                <li key={item.id} className="flex">
+                  <Link href={item.href}>
                     <a
-                      key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      className={`rounded-md hover:underline hover:transition hover:underline-offset-2 duration-300 hover:font-semibold bg-white w-full hover:bg-gray-50 py-2 px-4 inline-block whitespace-no-wrap ${
+                        router.pathname === item.href
+                          ? "text-black font-bold underline underline-offset-2"
+                          : "hover:bg-zinc-100 hover:text-black"
+                      }`}
                     >
-                      {page.name}
+                      {item.name}
                     </a>
-                  ))}
-                </div>
-              </Popover.Group>
-
-              <div className="ml-auto flex items-center">
-                <div className="hidden bg-violet-900 px-5 py-2 rounded-md lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a target="_blank" rel="noreferrer" href="http://manage.razaandassociates.com/" className="text-sm font-medium text-white hover:text-zinc-200">
-                    Sign in
-                  </a>
-                  
-                </div>
-
-              
-
-
-              </div>
-            </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </nav>
-      </header>
+          <div className="group inline-block relative">
+            <Link href="#">
+              <a
+                className={`text-gray-700 px-4 rounded inline-flex items-center ${
+                  router.pathname === "#"
+                    ? "text-black font-bold underline underline-offset-2"
+                    : "hover:bg-zinc-100 hover:text-black"
+                }`}
+              >
+                Join
+              </a>
+            </Link>
+
+            <ul className="  absolute animate-right-left  hidden w-60 bg-white rounded-lg text-gray-700 pt-1 group-hover:block transition ease-in-out delay-2000 ">
+              {technology.map((item) => (
+                <li key={item.id} className="flex">
+                  <Link href={item.href}>
+                    <a
+                      className={`rounded-md hover:underline hover:transition hover:underline-offset-2 duration-300 hover:font-semibold bg-white w-full hover:bg-gray-50 py-2 px-4 inline-block whitespace-no-wrap ${
+                        router.pathname === item.href
+                          ? "text-black font-bold underline underline-offset-2"
+                          : "hover:bg-zinc-100 hover:text-black"
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {navigation.map((item) => (
+            <li key={item.id} className="px-4 font-normal hover:text-zinc-500 ">
+              <Link href={item.href}>
+                <a
+                  className={`${
+                    router.pathname === item.href
+                      ? "text-black font-bold underline underline-offset-2"
+                      : "hover:bg-zinc-100 hover:text-black"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+                  <a href="https://manage.razaandassociates.com/" className="bg-violet-800 py-2 px-4 rounded-lg text-white">Signup</a>
+        <div className="md:hidden pr-5" onClick={handleClick}>
+          {!nav ? <MenuIcon className="w-5" /> : <XIcon className="w-5" />}
+        </div>
+      </div>
+
+      <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"} >
+        <li className="border-b-2 py-3 border-zinc-300 w-full flex justify-between" >
+          <Link href="#">
+            <a
+              className={`${
+                router.pathname === "/services"
+                  ? "text-black  underline font-bold underline-offset-2"
+                  : "hover:underline hover:underline-offset-2 hover:font-bold hover:text-black"
+              }`}
+            >
+              All Services
+            </a>
+          </Link>
+          <ul className="">
+            <li className="text-xl font-bold">
+              <div className="md:hidden" onClick={onTabHandler}>
+                {!tap ? (
+                  <ChevronRightIcon className="w-5" />
+                ) : (
+                  <ChevronDownIcon className="w-5" />
+                )}
+              </div>
+
+              <div
+                className={
+                  !tap ? "hidden" : "absolute bg-zinc-200 w-full -ml-56"
+                }
+              >
+                <ul className="absolute   w-60 bg-white rounded-lg text-gray-700  group-hover:block transition ease-in-out delay-300">
+                  {allservices.map((item) => (
+                    <li key={item.id} className="flex">
+                      <Link href={item.href}>
+                        <a
+                          className={`text-sm font-normal hover:underline  hover:underline-offset-2  bg-white w-full hover:bg-gray-50 py-2 px-4 inline-block${
+                            router.pathname === item.href
+                              ? "text-black  underline font-bold underline-offset-2"
+                              : "hover:bg-zinc-100 hover:font-bold hover:text-black"
+                          }`}
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li className="border-b-2 py-3 border-zinc-300 w-full flex justify-between">
+          <Link href="/technology">
+            <a
+              className={`${
+                router.pathname === "/technology"
+                  ? "text-black  underline font-bold underline-offset-2"
+                  : "hover:underline hover:underline-offset-2 hover:font-bold hover:text-black"
+              }`}
+            >
+              Tehnology
+            </a>
+          </Link>
+          <ul className="">
+            <li className="text-xl font-bold">
+              <div className="md:hidden" onClick={onTabHandlertech}>
+                {!serviceTap ? (
+                  <ChevronRightIcon className="w-5" />
+                ) : (
+                  <ChevronDownIcon className="w-5" />
+                )}
+              </div>
+
+              <div
+                className={
+                  !serviceTap ? "hidden" : "absolute bg-zinc-200 w-full -ml-56"
+                }
+              >
+                <ul className="absolute   w-60 bg-white rounded-lg text-gray-700  group-hover:block transition ease-in-out delay-300">
+                  {technology.map((item) => (
+                    <li key={item.id} className="flex">
+                      <Link href={item.href}>
+                        <a
+                          className={`text-sm  hover:underline  hover:underline-offset-2  bg-white w-full hover:bg-gray-50 py-2 px-4 inline-block font-normal ${
+                            router.pathname === item.href
+                              ? "text-black  underline font-bold underline-offset-2"
+                              : "hover:bg-zinc-100 hover:font-bold hover:text-black"
+                          }`}
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        {navigation.map((item) => (
+          <li
+            key={item.id}
+            className="border-b-2 py-3 border-zinc-300 w-full flex justify-between"
+          >
+            <Link href={item.href}>
+              <a
+                className={`${
+                  router.pathname === item.href
+                    ? "text-black  underline font-bold underline-offset-2"
+                    : "hover:underline hover:underline-offset-2 hover:font-bold hover:text-black"
+                }`}
+              >
+                {item.name}
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
+
+export default NavBar;
