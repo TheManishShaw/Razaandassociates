@@ -1,7 +1,7 @@
 import React from 'react'
-import Footer from '../../components/Footer'
-import Navbar from '../../components/NavBar'
-import Pancard from './Pancard'
+import Navbar from '../../../components/NavBar';
+import Footer from '../../../components/Footer'
+import Pancard from '../Pancard';
 const Index = () => {
   return (
     <div>

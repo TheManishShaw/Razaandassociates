@@ -10,7 +10,7 @@ const navigation = [
   {id:2, name: "Feedback", href: "#" },
 ];
 const allservices = [
-  { id: 1, name: "Pan Card", href: "/innerpage/Index" },
+  { id: 1, name: "Pan Card", href: "/pancard/" },
   { id: 2, name: "DSC- Digital signature certificates", href: "#" },
   { id: 3, name: "GST return filling", href: "#" },
   { id: 4, name: "Income tax (ITR)", href: "#" },
